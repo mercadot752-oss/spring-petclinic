@@ -17,7 +17,7 @@ pipeline {
     stage('Docker Build') {
       agent any
       steps {
-        sh 'docker build -t <docker-username>/spring-petclinic:gestion-udem-jenkins .'
+        sh 'docker build -t mercado752/spring-petclinic:gestion-udem-jenkins .'
       }
     }
     stage('Docker Push') {
@@ -25,7 +25,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
           sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          sh 'docker push <mercado752/spring-petclinic:gestion-udem-jenkins
+          sh 'docker push mercado752/spring-petclinic:gestion-udem-jenkins
         }
       }
     }
